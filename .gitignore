@@ -1,6 +1,6 @@
 .idea
 node_modules
-dist
+.last-run.json
 .DS_Store
 .env
 npm-debug.log*

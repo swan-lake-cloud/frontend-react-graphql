@@ -58,6 +58,7 @@ export default function LoginForm({ onLoginSuccess }: LoginFormProps) {
       <label style={{ display: 'block', marginBottom: 8 }}>
         <span style={{ display: 'block', fontSize: 12, color: '#94a3b8' }}>Nom d'utilisateur ou email</span>
         <input
+          name="identifier"
           value={identifier}
           onChange={(e) => setEmail(e.target.value)}
           type="text"
@@ -70,6 +71,7 @@ export default function LoginForm({ onLoginSuccess }: LoginFormProps) {
       <label style={{ display: 'block', marginBottom: 12 }}>
         <span style={{ display: 'block', fontSize: 12, color: '#94a3b8' }}>Mot de passe</span>
         <input
+          name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           type="password"
