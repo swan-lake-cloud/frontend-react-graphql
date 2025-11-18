@@ -96,8 +96,8 @@ export default function LoginForm({ onLoginSuccess }: LoginFormProps) {
       )}
 
       <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 12 }}>
-        Astuce: modifiez la mutation dans <code>src/graphql/mutations.ts</code> si votre schéma diffère.
-      </div>
+				Pas encore de compte ? <a onClick={() => navigate('/register')} style={{ color: '#2563eb', cursor: 'pointer' }}>Créer un nouveau compte</a>
+			</div>
     </form>
   )
 }
