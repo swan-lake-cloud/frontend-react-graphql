@@ -1,7 +1,12 @@
 
 import React from 'react'
 import { useMutation } from '@apollo/client'
+import { useNavigate } from 'react-router-dom'
 import { LOGIN } from '../graphql/mutations'
+
+interface LoginFormProps {
+  onLoginSuccess: (user: { username: string }) => void
+}
 
 type LoginResponse = {
   login: {
@@ -16,7 +21,8 @@ type LoginResponse = {
 
 type LoginVars = { identifier: string; password: string }
 
-export default function LoginForm() {
+export default function LoginForm({ onLoginSuccess }: LoginFormProps) {
+	const navigate = useNavigate()
   const [identifier, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [message, setMessage] = React.useState<string | null>(null)
@@ -25,9 +31,12 @@ export default function LoginForm() {
 		variables: { identifier, password },
 		onCompleted: (data) => {
 		  const token = data?.login?.token
+		  const username = data?.login?.user?.username
 		  if (token) {
 		    localStorage.setItem('token', token)
 		    setMessage('✅ Connecté ! Le token a été enregistré dans localStorage.')
+        onLoginSuccess({ username: username })
+        navigate('/home') // ✅ Redirection après succès
 		  } else {
 		    setMessage("ℹ️ Login effectué mais aucun token n'a été renvoyé.")
 		  }
