@@ -1,6 +1,6 @@
 
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, FormEvent } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 
 import { useMutation } from '@apollo/client'
 import { LOGIN_MUTATION } from '../graphql/mutations'
@@ -35,16 +35,19 @@ export default function LoginForm({ onLoginSuccess }: LoginFormProps) {
 		  const username = data?.login?.user?.username
 		  if (token) {
 		    localStorage.setItem('token', token)
-		    setMessage('✅ Connecté ! Le token a été enregistré dans localStorage.')
-        onLoginSuccess({ username: username })
-        navigate('/home') // ✅ Redirection après succès
+		    setMessage('✅ Vous êtes connecté')
+        onLoginSuccess({ username })
+        // ✅ Délai de 1.5s avant redirection
+        setTimeout(() => {
+          navigate('/home')
+        }, 700)
 		  } else {
 		    setMessage("ℹ️ Login effectué mais aucun token n'a été renvoyé.")
 		  }
 		},
   })
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setMessage(null)
     await login({ variables: { identifier, password } })
@@ -57,7 +60,7 @@ export default function LoginForm({ onLoginSuccess }: LoginFormProps) {
         <input
           value={identifier}
           onChange={(e) => setEmail(e.target.value)}
-          type="email"
+          type="text"
           required
           placeholder="vous@exemple.com"
           style={{ width: '100%', padding: '10px 12px', borderRadius: 10, border: '1px solid #334155', background: '#0b1220', color: '#e2e8f0' }}
@@ -96,7 +99,7 @@ export default function LoginForm({ onLoginSuccess }: LoginFormProps) {
       )}
 
       <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 12 }}>
-				Pas encore de compte ? <a onClick={() => navigate('/register')} style={{ color: '#2563eb', cursor: 'pointer' }}>Créer un nouveau compte</a>
+        Pas encore de compte ? <Link to="/register" style={{ color: '#2563eb', textDecoration: 'none' }}>Créer un nouveau compte</Link>
 			</div>
     </form>
   )

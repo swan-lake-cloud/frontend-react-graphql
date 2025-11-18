@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, FormEvent } from 'react';
+import { useNavigate, Link } from 'react-router-dom'
 
 import { useMutation } from '@apollo/client';
 import { CREATE_USER_MUTATION } from '../graphql/mutations';
@@ -46,7 +46,7 @@ export default function Register({ onRegisterSuccess }: RegisterFormProps) {
     },
   })
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setMessage(null)
     await createUser({
@@ -151,7 +151,7 @@ export default function Register({ onRegisterSuccess }: RegisterFormProps) {
       )}
 
       <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 12 }}>
-        Déjà un compte ? <a href="/login" style={{ color: '#2563eb' }}>Se connecter</a>
+        Déjà un compte ? <Link to="/register" style={{ color: '#2563eb' }}>Se connecter</Link>
       </div>
     </form>
   )
