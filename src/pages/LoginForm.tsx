@@ -1,8 +1,9 @@
 
-import React from 'react'
-import { useMutation } from '@apollo/client'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { LOGIN } from '../graphql/mutations'
+
+import { useMutation } from '@apollo/client'
+import { LOGIN_MUTATION } from '../graphql/mutations'
 
 interface LoginFormProps {
   onLoginSuccess: (user: { username: string }) => void
@@ -23,11 +24,11 @@ type LoginVars = { identifier: string; password: string }
 
 export default function LoginForm({ onLoginSuccess }: LoginFormProps) {
 	const navigate = useNavigate()
-  const [identifier, setEmail] = React.useState('')
-  const [password, setPassword] = React.useState('')
-  const [message, setMessage] = React.useState<string | null>(null)
+  const [identifier, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [message, setMessage] = useState<string | null>(null)
 
-  const [login, { loading, error }] = useMutation<LoginResponse, LoginVars>(LOGIN, {
+  const [login, { loading, error }] = useMutation<LoginResponse, LoginVars>(LOGIN_MUTATION, {
 		variables: { identifier, password },
 		onCompleted: (data) => {
 		  const token = data?.login?.token
