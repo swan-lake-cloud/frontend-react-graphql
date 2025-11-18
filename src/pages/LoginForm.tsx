@@ -56,13 +56,13 @@ export default function LoginForm({ onLoginSuccess }: LoginFormProps) {
   return (
     <form onSubmit={onSubmit}>
       <label style={{ display: 'block', marginBottom: 8 }}>
-        <span style={{ display: 'block', fontSize: 12, color: '#94a3b8' }}>Username or Email</span>
+        <span style={{ display: 'block', fontSize: 12, color: '#94a3b8' }}>Nom d'utilisateur ou email</span>
         <input
           value={identifier}
           onChange={(e) => setEmail(e.target.value)}
           type="text"
           required
-          placeholder="vous@exemple.com"
+          placeholder="Votre nom d'utilisateur ou email"
           style={{ width: '100%', padding: '10px 12px', borderRadius: 10, border: '1px solid #334155', background: '#0b1220', color: '#e2e8f0' }}
         />
       </label>

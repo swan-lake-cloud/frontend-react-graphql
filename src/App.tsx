@@ -40,8 +40,8 @@ function AppContent() {
             fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif'
           }}>
             <div style={{width: 380, background: '#111827', padding: 24, borderRadius: 16, boxShadow: '0 10px 30px rgba(0,0,0,0.3)'}}>
-              <h1 style={{marginTop: 0, marginBottom: 12, fontSize: 24}}>🔐 Login GraphQL</h1>
-              <p style={{marginTop: 0, marginBottom: 24, color: '#94a3b8'}}>Entrez vos identifiants pour récupérer un token.</p>
+              <h1 style={{marginTop: 0, marginBottom: 12, fontSize: 24}}>🔐 Login</h1>
+              <p style={{marginTop: 0, marginBottom: 24, color: '#94a3b8'}}>Entrez vos identifiants</p>
               <LoginForm onLoginSuccess={setUser} />
             </div>
           </div>
