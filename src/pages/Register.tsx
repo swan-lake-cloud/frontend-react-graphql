@@ -22,7 +22,7 @@ type UserInput = {
   lastName: string;
   email: string;
   username: string;
-  passwordHash: string;
+  password: string;
 }
 
 export default function Register({ onRegisterSuccess }: RegisterFormProps) {
@@ -56,7 +56,7 @@ export default function Register({ onRegisterSuccess }: RegisterFormProps) {
           lastName,
           email,
           username,
-          passwordHash: password
+          password,
         }
       }
     })
