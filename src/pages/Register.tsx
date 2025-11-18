@@ -151,7 +151,7 @@ export default function Register({ onRegisterSuccess }: RegisterFormProps) {
       )}
 
       <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 12 }}>
-        Déjà un compte ? <Link to="/register" style={{ color: '#2563eb' }}>Se connecter</Link>
+        Déjà un compte ? <Link to="/login" style={{ color: '#2563eb' }}>Se connecter</Link>
       </div>
     </form>
   )
