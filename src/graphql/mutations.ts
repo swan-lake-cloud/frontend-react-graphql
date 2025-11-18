@@ -16,6 +16,7 @@ export const LOGOUT_MUTATION = gql`
   mutation Logout($token: String!) {
       logout(token: $token) {
 			success
+			message
     }
   }
 `

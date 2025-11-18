@@ -15,7 +15,8 @@ interface HomeProps {
 
 type LogoutResponse = {
   logout: {
-    success: boolean
+    success: boolean,
+    message: string
   };
 };
 
@@ -28,7 +29,7 @@ export default function Home({ user, onLogout }: HomeProps) {
   const [logout, { loading }] = useMutation<LogoutResponse, LogoutVars>(LOGOUT_MUTATION, {
 		variables: { token },
     onCompleted: (data) => {
-      if (data.logout.success) {
+      if (data?.logout?.success) {
         onLogout()
         navigate('/login')
       }
