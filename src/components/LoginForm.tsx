@@ -22,15 +22,16 @@ export default function LoginForm() {
   const [message, setMessage] = React.useState<string | null>(null)
 
   const [login, { loading, error }] = useMutation<LoginResponse, LoginVars>(LOGIN, {
-    onCompleted: (data) => {
-      const token = data?.login?.token
-      if (token) {
-        localStorage.setItem('token', token)
-        setMessage('✅ Connecté ! Le token a été enregistré dans localStorage.')
-      } else {
-        setMessage("ℹ️ Login effectué mais aucun token n'a été renvoyé.")
-      }
-    },
+		variables: { identifier, password },
+		onCompleted: (data) => {
+		  const token = data?.login?.token
+		  if (token) {
+		    localStorage.setItem('token', token)
+		    setMessage('✅ Connecté ! Le token a été enregistré dans localStorage.')
+		  } else {
+		    setMessage("ℹ️ Login effectué mais aucun token n'a été renvoyé.")
+		  }
+		},
   })
 
   const onSubmit = async (e: React.FormEvent) => {
